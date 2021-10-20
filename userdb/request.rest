@@ -1,0 +1,91 @@
+GET http://localhost:6000/api/users
+
+###
+
+POST http://localhost:6000/api/users 
+Content-Type: application/json
+ 
+{
+"username": "Kyle", "password": "password", "role": "user"
+}
+
+###
+
+POST http://localhost:6000/api/users/login 
+Content-Type: application/json
+
+{
+"username": "Kyle", "password": "password"
+}
+
+###
+
+POST http://localhost:6000/api/users/login 
+Content-Type: application/json
+
+{
+"username": "david", "password": "password"
+}
+
+###
+
+DELETE http://localhost:6000/api/users/Kyle
+Content-Type: application/json
+
+# {
+# "username": "david", "password": "password"
+# }
+
+###
+
+POST http://localhost:6000/api/users/logint
+Content-Type: application/json
+
+{
+"username": "Kyle", "password": "password"
+}
+
+###
+
+POST http://localhost:6000/api/users/auth Content-Type: application/json
+
+{
+
+"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiS3lsZSIsImlhdCI6MTYzNDAyNzU5NywiZXhwIjoxNjM0MDI3NjEyfQ.FX_b7L-70VKTXfNDecNPX023jvRGeKievzfqzjQ9_-o"
+}
+
+###
+GET http://localhost:6000/api/users/auth
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiS3lsZSIsImlhdCI6MTYzNDc0Nzc0Mn0.Kq9-MchyX3Nghx5pSzjXT0uRmdlje-8SuPFTwEYLets
+
+{
+"username": "Kyle"
+}
+
+###
+// wrong token
+GET http://localhost:6000/api/users/auth
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiS3lsZSIsImlhdCI6MTYzNDc0NTc2Nn0.xxhcDO9JbQIC0YVWs3r2jfgDDhYT3gB936TcWKjJK
+
+{
+"username": "Kyle"
+}
+
+###
+// wrong username
+GET http://localhost:6000/api/users/auth
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiS3lsZSIsImlhdCI6MTYzNDc0NTc2Nn0.xxhcDO9JbQIC0YVWs3r2jfgDDhYT3gB936TcWKjJK
+
+{
+"username": "adasdas"
+}
+
+###
+
+//unauthorized : not admin
+GET http://localhost:6000/api/users/admin
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiS3lsZSIsImlhdCI6MTYzNDc0Nzc0Mn0.Kq9-MchyX3Nghx5pSzjXT0uRmdlje-8SuPFTwEYLets
